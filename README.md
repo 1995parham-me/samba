@@ -17,3 +17,10 @@ First you need to install and configure Samba, I have a script for it:
 ```bash
 ./start.sh
 ```
+
+Then you are ready to start the service and have some files online:
+
+```bash
+sudo systemctl start smb
+sudo systemctl start nmb
+```

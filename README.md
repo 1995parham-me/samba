@@ -15,12 +15,17 @@ I found out it is not good enough and well supported to other devices as [Samba]
 First you need to install and configure Samba, I have a script for it:
 
 ```bash
-./start.sh
+./start.sh install
 ```
 
 Then you are ready to start the service and have some files online:
 
 ```bash
-sudo systemctl start smb
-sudo systemctl start nmb
+./start.sh start
+```
+
+After you done, you can shut down it as follows:
+
+```bash
+./start.sh stop
 ```

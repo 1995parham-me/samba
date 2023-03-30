@@ -62,13 +62,32 @@ install-samba() {
 }
 
 main() {
-	install-samba
+	if [ $# != 1 ]; then
+		message "invalid command" "error"
+		return 1
+	fi
 
-	testparm "$samba_root/smb.conf"
-	sudo cp "$samba_root/smb.conf" /etc/samba/smb.conf
+	case $1 in
+	"install")
+		install-samba
 
-	message "Although the user name is shared with Linux system, Samba uses a password separate from that of the Linux user accounts."
-	sudo smbpasswd -a parham
+		testparm "$samba_root/smb.conf"
+		sudo cp "$samba_root/smb.conf" /etc/samba/smb.conf
+
+		message "Although the user name is shared with Linux system, Samba uses a password separate from that of the Linux user accounts."
+		sudo smbpasswd -a parham
+		;;
+	"start")
+		sudo systemctl start smb.service nmb.service
+		;;
+	"stop")
+		sudo systemctl stop smb.service nmb.service
+		;;
+	*)
+		message "invalid command" "error"
+		return 1
+		;;
+	esac
 }
 
 main "$*"

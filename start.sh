@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# https://stackoverflow.com/questions/3822621/how-to-exit-if-a-command-failed
+set -eu
+set -o pipefail
+
 export F_CYAN="\033[38;2;0;255;255m"
 export F_GREEN="\033[38;2;127;230;127m"
 export F_RED="\033[38;2;255;127;127m"
@@ -10,6 +14,8 @@ export F_BLUE="\033[38;2;0;191;255m"
 export BOLD_ON="\033[1m"
 export BOLD_OFF="\033[0m"
 export F_RESET="\033[39m"
+
+samba_root="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 function message() {
 	local module=samba
@@ -58,8 +64,11 @@ install-samba() {
 main() {
 	install-samba
 
+	testparm "$samba_root/smb.conf"
+	sudo cp "$samba_root/smb.conf" /etc/samba/smb.conf
+
 	message "Although the user name is shared with Linux system, Samba uses a password separate from that of the Linux user accounts."
-	smbpasswd -a parham
+	sudo smbpasswd -a parham
 }
 
 main "$*"

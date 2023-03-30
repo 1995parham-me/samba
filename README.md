@@ -1,6 +1,9 @@
 <h1 align="center"> Samba </h1>
 <h6 align="center"> Share files with SMB in Archlinux </h6>
 
+<p align="center">
+  <img alt="banner" src="./.github/assets/banner.webp">
+</p>
 
 ## Introduction
 

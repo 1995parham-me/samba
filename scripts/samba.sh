@@ -24,7 +24,7 @@ main() {
 
 main_parham() {
 	testparm "$root/smb.conf"
-	copycat "samba" "$root/smb.conf" /etc/samba/smb.conf
+	copycat "samba" "smb.conf" /etc/samba/smb.conf
 
 	msg "Although the user name is shared with Linux system, Samba uses a password separate from that of the Linux user accounts."
 	sudo smbpasswd -a parham

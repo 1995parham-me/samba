@@ -5,7 +5,7 @@ set -o pipefail
 
 main() {
 	if [ $# != 1 ]; then
-		return 1
+		set --first "status"
 	fi
 
 	case $1 in
@@ -16,7 +16,7 @@ main() {
 		sudo systemctl stop smb.service nmb.service
 		;;
 	*)
-		return 1
+		sudo systemctl status smb.service
 		;;
 	esac
 }

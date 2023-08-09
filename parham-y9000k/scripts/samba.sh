@@ -15,7 +15,7 @@ usage() {
 root=${root:?"root must be set"}
 
 main_pacman() {
-	return 1
+	return 0
 }
 
 main_apt() {
